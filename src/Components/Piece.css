@@ -1,0 +1,24 @@
+.cell {
+    width: 30px;
+    height: 29px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.piece {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.piece.black {
+    background-color: black;
+}
+
+.piece.white {
+    background-color: white;
+    border: 1px solid #333;
+}
