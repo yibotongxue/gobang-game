@@ -1,20 +1,18 @@
 import { useState } from "react";
+import {CaculateWinner} from '../utilities.js';
 import Piece from "./Piece";
 import './Board.css'
 
-function Board() {
-    const [boardState, setBoardState] = useState(Array(15).fill(null).map(() => Array(15).fill(null)));
-    const [blackIsNext, setBlackIsNext] = useState(true);
+function Board({ boardState, blackIsNext, winner, handlePlay }) {
 
     function getPieceOnClick(rowIndex, colIndex) {
         function pieceOnClick() {
-            if (boardState[rowIndex][colIndex]) {
+            if (boardState[rowIndex][colIndex] || winner) {
                 return;
             }
-            let nextBoardState = boardState.slice();
+            let nextBoardState = structuredClone(boardState);
             nextBoardState[rowIndex][colIndex] = blackIsNext ? 'black' : 'white';
-            setBoardState(nextBoardState);
-            setBlackIsNext(!blackIsNext);
+            handlePlay(nextBoardState);
         }
         return pieceOnClick;
     }
