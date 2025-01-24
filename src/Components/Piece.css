@@ -8,17 +8,20 @@
     cursor: pointer;
 }
 
-.piece {
+.cell::before {
+    content: '';
     width: 24px;
     height: 24px;
     border-radius: 50%;
+    background-color: transparent;
+    position: absolute;
 }
 
-.piece.black {
+.cell.black::before {
     background-color: black;
 }
 
-.piece.white {
+.cell.white::before {
     background-color: white;
-    border: 1px solid #333;
+    box-shadow: 0 0 0 1px #000;
 }

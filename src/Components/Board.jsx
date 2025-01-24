@@ -4,10 +4,19 @@ import './Board.css'
 
 function Board() {
     const [boardState, setBoardState] = useState(Array(15).fill(null).map(() => Array(15).fill(null)));
-    console.log(boardState[0]);
+    const [blackIsNext, setBlackIsNext] = useState(true);
 
-    function onClick() {
-        // TODO
+    function getPieceOnClick(rowIndex, colIndex) {
+        function pieceOnClick() {
+            if (boardState[rowIndex][colIndex]) {
+                return;
+            }
+            let nextBoardState = boardState.slice();
+            nextBoardState[rowIndex][colIndex] = blackIsNext ? 'black' : 'white';
+            setBoardState(nextBoardState);
+            setBlackIsNext(!blackIsNext);
+        }
+        return pieceOnClick;
     }
 
     return (
@@ -18,7 +27,7 @@ function Board() {
                         {
                             row.map((col, colIndex) => (
                                 <div key={`${rowIndex}-${colIndex}`}>
-                                    <Piece pieceState={col} onPieceClick={onClick} />
+                                    <Piece pieceState={col} onPieceClick={getPieceOnClick(rowIndex, colIndex)} />
                                 </div>
                             ))
                         }

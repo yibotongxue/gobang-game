@@ -1,11 +1,8 @@
-import { useState } from "react";
 import './Piece.css'
 
 function Piece({ pieceState, onPieceClick }) {
-    // TODO
     return (
-        <div className="cell" onClick={onPieceClick}>
-        </div>
+        <div className={`cell ${pieceState}`} onClick={onPieceClick}></div>
     )
 }
 
